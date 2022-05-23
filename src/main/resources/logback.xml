@@ -17,6 +17,10 @@
     <logger name="com.swjtu.netty.chat.ChatClientEventHandler" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
+    <logger name="com.swjtu.netty" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
     <root level="ERROR">
         <appender-ref ref="STDOUT"/>
     </root>
