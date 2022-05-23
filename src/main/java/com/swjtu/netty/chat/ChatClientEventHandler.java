@@ -18,13 +18,13 @@ public class ChatClientEventHandler extends SimpleChannelInboundHandler {
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object o) throws Exception {
-        log.debug("get msg from {} : {}", ctx.channel().remoteAddress(), o);
+
         try{
             // 反序列化
             // 从对象中拿到msg
             // 解码(可能加盐)
             // 输出 并 广播
-
+            log.debug("get msg from {} : {}", ctx.channel().remoteAddress(), o);
         } finally {
 
         }
@@ -47,12 +47,13 @@ public class ChatClientEventHandler extends SimpleChannelInboundHandler {
                         ctx.channel().close();
                         break;
                     } else {
-                        ctx.writeAndFlush(msg);
+                        ctx.channel().writeAndFlush(msg);
                     }
                 }
             }
-        }, "input" + ctx.name()).start();
+        }, "input" ).start();
     }
+
 
 
 }

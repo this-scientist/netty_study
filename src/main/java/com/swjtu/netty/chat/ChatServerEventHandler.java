@@ -41,10 +41,10 @@ public class ChatServerEventHandler extends SimpleChannelInboundHandler {
             log.debug("get msg from {} : {}", incoming.remoteAddress(), msg);
 
             for(Channel channel : channels) {
-                if(channel != incoming) {
-                    ctx.writeAndFlush("[" + incoming.remoteAddress() + "]" + msg);
+                if(!channel.equals(incoming)) {
+                    channel.writeAndFlush("[" + incoming.remoteAddress() + "]" + msg);
                 } else {
-                    ctx.writeAndFlush("[you]" + msg);
+                    channel.writeAndFlush("[you]" + msg);
                 }
             }
         } catch (Exception e) {
